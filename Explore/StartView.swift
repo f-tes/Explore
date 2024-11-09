@@ -13,6 +13,8 @@ struct RouteMapView: View {
     @State private var totalDistance: Double = 0.0
     @State private var polylines: [MKPolyline] = []
     
+    @Binding var chosenLandmarks: [Location]
+    
     let locations: [Location] = [
         Location(name: "Start / End", coordinate: CLLocationCoordinate2D(latitude: 1.2839, longitude: 103.8515)),
         Location( name: "Landmark A", coordinate: CLLocationCoordinate2D(latitude: 1.2849, longitude: 103.8544)),
@@ -48,7 +50,7 @@ struct RouteMapView: View {
                 Group {
                     ForEach(polylines, id: \.self) { polyline in
                         MapPolyline(polyline)
-                            .stroke(Color.blue, lineWidth: 6)
+                            .stroke(Color.orange, lineWidth: 8)
                     }
                 }
             }
@@ -69,7 +71,7 @@ struct RouteMapView: View {
                     Text("\(totalDistance, specifier: "%.2f") km")
                         .font(.largeTitle)
                         .bold()
-                        .foregroundColor(.white)
+                        .foregroundStyle(Color(hex: "#9FC83E"))
                 }
                 .frame(maxWidth: .infinity)
                 .padding()
@@ -120,8 +122,6 @@ struct RouteMapView: View {
     }
 }
 
-struct StartView: View {
-    var body: some View {
-        RouteMapView()
-    }
+#Preview{
+    RouteMapView(chosenLandmarks: .constant([]))
 }
