@@ -1,4 +1,4 @@
-// TODO : 1) check if route calculation is correct 2) debug 2) start map nearer 3) different map angles 4) sheet stuff 5) Generalise to different coordinates and all  6) exploit mapkit lookaround and all 7) combine all 8) beautify all  9) debug
+// TODO : 1) check if route calculation is correct 2) debug 2) start map nearer 3) different map angles 4) sheet stuff 5) Generalise to different coordinates and all  6) exploit mapkit lookaround and all 7) combine all 8) beautify all  9) debug 10) get user location in real time 11) new app icon
 
 
 import SwiftUI

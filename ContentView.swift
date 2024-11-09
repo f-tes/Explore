@@ -125,6 +125,7 @@ struct SheetView: View {
             }
 
             Button{
+                StartView()
                 
             }label:{
                 Text("Continue")
