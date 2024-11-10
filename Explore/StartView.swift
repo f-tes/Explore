@@ -3,11 +3,9 @@
 
 import SwiftUI
 import MapKit
-
-
 struct RouteMapView: View {
     @State private var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 1.2839, longitude: 103.8515), //to make this generalisable
+        center: CLLocationCoordinate2D(latitude: 1.2839, longitude: 103.8515),
         span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
     )
     @State private var totalDistance: Double = 0.0
@@ -17,15 +15,16 @@ struct RouteMapView: View {
     
     let locations: [Location] = [
         Location(name: "Start / End", coordinate: CLLocationCoordinate2D(latitude: 1.2839, longitude: 103.8515)),
-        Location( name: "Landmark A", coordinate: CLLocationCoordinate2D(latitude: 1.2849, longitude: 103.8544)),
+        Location(name: "Landmark A", coordinate: CLLocationCoordinate2D(latitude: 1.2849, longitude: 103.8544)),
         Location(name: "Landmark B", coordinate: CLLocationCoordinate2D(latitude: 1.2869, longitude: 103.8524))
     ]
     
     var body: some View {
         ZStack {
+            // Map view and polylines
             Map(initialPosition: .region(region)) {
                 UserAnnotation()
-                ForEach(locations){ location in
+                ForEach(locations) { location in
                     Annotation(location.name, coordinate: location.coordinate, anchor: .bottom) {
                         VStack {
                             if location.name == "Start / End" {
@@ -41,7 +40,6 @@ struct RouteMapView: View {
                                     .background(Color.red)
                                     .cornerRadius(4)
                             }
-//
                         }
                     }
                 }
@@ -52,14 +50,13 @@ struct RouteMapView: View {
                     }
                 }
             }
-            //            Map(coordinateRegion: $region, showsUserLocation: true, annotationItems: locations) { location in
-            //
             .mapStyle(.standard(elevation: .realistic))
             .edgesIgnoringSafeArea(.all)
             .onAppear {
                 calculateRouteDistance()
             }
-            
+
+            // UI components like distance and button
             VStack {
                 Spacer()
                 VStack {
@@ -76,7 +73,25 @@ struct RouteMapView: View {
                 .background(Color.black.opacity(0.8))
                 .cornerRadius(20)
                 .padding(.horizontal)
-                .padding(.bottom, 20)
+                .padding(.bottom, 2)
+                
+                // Button that stretches across the screen
+                Button(action: {
+                    // TODO Define the action to be performed when the button is tapped
+                }) {
+                    Text("Go!")
+                        .frame(maxWidth: .infinity) // Ensures the button stretches across the full width
+
+                        .font(.title2)
+                        .fontWeight(.bold)
+                        .foregroundColor(.black) // Changed from .foregroundStyle
+                        .padding()
+                        .background(Color(hex: "#9FC83E"))
+                        .cornerRadius(10)
+                        .padding(.top, 10) // Optional: Add space above the button
+                }
+                .frame(maxWidth: .infinity) // Ensures the button stretches across the full width
+                .padding(.horizontal) // Optional: Adds space around the button
             }
         }
     }
@@ -118,8 +133,4 @@ struct RouteMapView: View {
             self.totalDistance = distanceTotal / 1000.0 // Convert to km
         }
     }
-}
-
-#Preview{
-    RouteMapView(chosenLandmarks: .constant([]))
 }
