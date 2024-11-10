@@ -31,19 +31,17 @@ struct RouteMapView: View {
                             if location.name == "Start / End" {
                                 Image(systemName: "figure.walk")
                                     .padding(4)
-                                    .foregroundStyle(.white)
+                                    .foregroundStyle(.primary)
                                     .background(Color.yellow)
                                     .cornerRadius(4)
                             } else {
                                 Image(systemName: "mappin.circle.fill")
                                     .padding(4)
-                                    .foregroundStyle(.white)
+                                    .foregroundStyle(.primary)
                                     .background(Color.red)
                                     .cornerRadius(4)
                             }
-                            Text(location.name)
-                                .font(.caption)
-                                .foregroundColor(.black)
+//
                         }
                     }
                 }

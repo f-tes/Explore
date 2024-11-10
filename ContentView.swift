@@ -37,11 +37,13 @@ struct ContentView: View {
                                             .foregroundStyle(.white)
                                             .background(Color.red)
                                             .cornerRadius(4)
+                                            .font(.headline)  // Large system font size
+
                                     }
                                     
                                     Text(location.name)
                                         .font(.caption)
-                                        .foregroundColor(.black)
+                                        .foregroundColor(.primary)
                                 }
                             }
                         }
@@ -176,6 +178,3 @@ extension Color {
     }
 }
 
-#Preview {
-    ContentView()
-}
