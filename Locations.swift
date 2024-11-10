@@ -31,7 +31,7 @@ var allLandmarks = [
         )
     ),
     Location(
-        name: "Sri Mariamman Temple: Hindu Temple in Singapore",
+        name: "Sri Mariamman Temple",
         coordinate: CLLocationCoordinate2D(
             latitude: 1.28200000029374,
             longitude: 103.845380000188996

@@ -56,6 +56,8 @@ struct RouteMapView: View {
                 calculateRouteDistance()
             }
 
+         
+            // UI components like distance and button
             // UI components like distance and button
             VStack {
                 Spacer()
@@ -75,24 +77,56 @@ struct RouteMapView: View {
                 .padding(.horizontal)
                 .padding(.bottom, 2)
                 
-                // Button that stretches across the screen
-                Button(action: {
-                    // TODO Define the action to be performed when the button is tapped
-                }) {
-                    Text("Go!")
-                        .frame(maxWidth: .infinity) // Ensures the button stretches across the full width
+                // Circular button row with 3 buttons
+                HStack(spacing: 20) {
+                    // Back Button
+                    Button(action: {
+                        // TODO: Define the action to go back to ContentView
+                    }) {
+                        Image(systemName: "arrow.left")
+                            .font(.title)
+                            .bold()
+                            .foregroundColor(.black) // Black icon color
+                            .frame(width: 60, height: 60)
+                            .background(Circle().fill(Color(hex: "#9FC83E"))) // Green circle background
+                            .opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
 
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .foregroundColor(.black) // Changed from .foregroundStyle
-                        .padding()
-                        .background(Color(hex: "#9FC83E"))
-                        .cornerRadius(10)
-                        .padding(.top, 10) // Optional: Add space above the button
+                    }
+                    
+                    // Play Button (larger and centered)
+                    Button(action: {
+                        // TODO: Define the action for play
+                    }) {
+                        Image(systemName: "play.fill")
+                            .font(.largeTitle)
+                            .bold()
+                            .foregroundColor(.black) // Black icon color
+                            .frame(width: 80, height: 80)
+                            .background(Circle().fill(Color(hex: "#9FC83E"))) // Green circle background
+                            .opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
+
+                    }
+                    
+                    // Center Me Button
+                    Button(action: {
+                        // TODO: Define the action to center map on user location
+                    }) {
+                        Image(systemName: "location.fill")
+                            .font(.title)
+                            .bold()
+
+                            .foregroundColor(.black) // Black icon color
+                            .frame(width: 60, height: 60)
+                            .background(Circle().fill(Color(hex: "#9FC83E"))) // Green circle background
+                            .opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
+
+                    }
                 }
-                .frame(maxWidth: .infinity) // Ensures the button stretches across the full width
-                .padding(.horizontal) // Optional: Adds space around the button
+                .padding(.bottom, 20) // Optional padding for button row spacing
             }
+
+
+
         }
     }
     
