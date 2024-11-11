@@ -16,11 +16,11 @@ struct RouteMapView: View {
     
     @Binding var chosenLandmarks: [Location]
     
-    let locations: [Location] = [
-        Location(name: "Start / End", coordinate: CLLocationCoordinate2D(latitude: 1.2839, longitude: 103.8515)),
-        Location(name: "Landmark A", coordinate: CLLocationCoordinate2D(latitude: 1.2849, longitude: 103.8544)),
-        Location(name: "Landmark B", coordinate: CLLocationCoordinate2D(latitude: 1.2869, longitude: 103.8524))
-    ]
+//    var locations: [Location] = [
+//        Location(name: "Start / End", coordinate: CLLocationCoordinate2D(latitude: 1.2839, longitude: 103.8515)),
+//        Location(name:"Landmark A", coordinate: CLLocationCoordinate2D(latitude: 1.2849, longitude: 103.8544)),
+//        Location(name: "Landmark B", coordinate: CLLocationCoordinate2D(latitude: 1.2869, longitude: 103.8524))
+//    ]
     
     @State var backSheet = false
     
@@ -33,7 +33,7 @@ struct RouteMapView: View {
             // Map view and polylines
             Map(initialPosition: .region(region)) {
                 UserAnnotation()
-                ForEach(locations) { location in
+                ForEach(chosenLandmarks) { location in
                     Annotation(location.name, coordinate: location.coordinate, anchor: .bottom) {
                         VStack {
                             if location.name == "Start / End" {
@@ -181,10 +181,10 @@ struct RouteMapView: View {
     func calculateRouteDistance() {
         var requests = [MKDirections.Request]()
         
-        for i in 0..<locations.count {
+        for i in 0..<chosenLandmarks.count {
             let request = MKDirections.Request()
-            request.source = MKMapItem(placemark: MKPlacemark(coordinate: locations[i].coordinate))
-            request.destination = MKMapItem(placemark: MKPlacemark(coordinate: locations[(i + 1) % locations.count].coordinate))
+            request.source = MKMapItem(placemark: MKPlacemark(coordinate: chosenLandmarks[i].coordinate))
+            request.destination = MKMapItem(placemark: MKPlacemark(coordinate: chosenLandmarks[(i + 1) % chosenLandmarks.count].coordinate))
             requests.append(request)
         }
         
