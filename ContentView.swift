@@ -1,5 +1,6 @@
 import SwiftUI
 import MapKit
+import Forever
 
 // Main ContentView with map and control panel
 struct ContentView: View {
@@ -9,11 +10,12 @@ struct ContentView: View {
     )
     
     @State var chosenLandmarks: [Location] = []
-    
-    
+        
     @State private var isSheetPresented = false
-    
     @State var photoUploadSheet = false
+    
+    @State var canContinue = false
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -167,22 +169,24 @@ struct SheetView: View {
                     .cornerRadius(10)
                 }
             }
-            
-            Button {
-                routeMapSheet = true
-            } label: {
-                Text("Continue")
-                    .padding()
-                    .background(Color(hex: "#9FC83E"))
-                    .cornerRadius(10)
-                    .padding()
-                    .foregroundStyle(.black)
-                    .fontWeight(.bold)
-            }
-            .fullScreenCover(isPresented: $routeMapSheet) {
-                RouteMapView(chosenLandmarks: $chosenLandmarks)
-            }
-
+                Button {
+                    if chosenLandmarks.count >= 2{
+                        routeMapSheet = true
+                    } else{
+                        routeMapSheet = false
+                    }
+                } label: {
+                    Text("Continue")
+                        .padding()
+                        .background(Color(hex: "#9FC83E"))
+                        .cornerRadius(10)
+                        .padding()
+                        .foregroundStyle(.black)
+                        .fontWeight(.bold)
+                }
+                .fullScreenCover(isPresented: $routeMapSheet) {
+                    RouteMapView(chosenLandmarks: $chosenLandmarks)
+                }
         }
     }
 }
