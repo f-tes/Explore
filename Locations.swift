@@ -834,6 +834,76 @@ var allLandmarks = [
             latitude: 1.4238213598215022,
             longitude: 103.86089100010147
         )
+    ),
+    Location(
+        name: "Pasir Ris Beach",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.38503263857209,
+            longitude: 103.94553409151764
+        )
+    ),
+    Location(
+        name: "Pasir Ris Bird Watching Tower",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.3787727353198869,
+            longitude: 103.95276324255424
+        )
+    ),
+    Location(
+        name: "Changi Broadwalk",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.391708215863051,
+            longitude: 103.97589276156293
+        )
+    ),
+    Location(
+        name: "Changi Coastal Walk",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.3902308379231318,
+            longitude: 103.9883101117522
+        )
+    ),
+    Location(
+        name: "Changi Beach",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.3871105480609822,
+            longitude: 104.00016198821237
+        )
+    ),
+    Location(
+        name: "Changi Bay Point",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.369826190741353,
+            longitude: 104.01370385157549
+        )
+    ),
+    Location(
+        name: "NSRCC Beach",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.3161390457366635,
+            longitude: 103.97273038115324
+        )
+    ),
+    Location(
+        name: "East Coast Park Seafood Center",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.3050923759848343,
+            longitude: 103.93084817341354
+        )
+    ),
+    Location(
+        name: "Changi Jurassic Mile",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.3349013114269468,
+            longitude: 103.98354005712568
+        )
+    ),
+    Location(
+        name: "Tanah Merah Beach",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.3169177255655427,
+            longitude: 103.980636450302
+        )
     )
     
 ]
