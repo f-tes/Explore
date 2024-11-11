@@ -549,13 +549,6 @@ var allLandmarks = [
         )
     ),
     Location(
-        name: "Kusu Island",
-        coordinate: CLLocationCoordinate2D(
-            latitude: 1.223,
-            longitude: 103.86052
-        )
-    ),
-    Location(
         name: "HortPark, Singapore",
         coordinate: CLLocationCoordinate2D(
             latitude: 1.279,
@@ -619,24 +612,10 @@ var allLandmarks = [
         )
     ),
     Location(
-        name: "Chek Jawa, Pulau Ubin",
-        coordinate: CLLocationCoordinate2D(
-            latitude: 1.408,
-            longitude: 103.96371
-        )
-    ),
-    Location(
         name: "Merlion Park",
         coordinate: CLLocationCoordinate2D(
             latitude: 1.287,
             longitude: 103.85455
-        )
-    ),
-    Location(
-        name: "Marina Bay Sands SkyPark",
-        coordinate: CLLocationCoordinate2D(
-            latitude: 1.283,
-            longitude: 103.86081
         )
     ),
     Location(
@@ -703,13 +682,6 @@ var allLandmarks = [
         )
     ),
     Location(
-        name: "Pulau Ubin & Singapore Islands",
-        coordinate: CLLocationCoordinate2D(
-            latitude: 1.41399999977259,
-            longitude: 103.959261000401995
-        )
-    ),
-    Location(
         name: "Little India, Singapore",
         coordinate: CLLocationCoordinate2D(
             latitude: 1.30700000001345,
@@ -738,13 +710,6 @@ var allLandmarks = [
         )
     ),
     Location(
-        name: "Civic District, Singapore",
-        coordinate: CLLocationCoordinate2D(
-            latitude: 1.29299999971177,
-            longitude: 103.852220000030997
-        )
-    ),
-    Location(
         name: "HarbourFront, Singapore",
         coordinate: CLLocationCoordinate2D(
             latitude: 1.26500000005246,
@@ -752,7 +717,7 @@ var allLandmarks = [
         )
     ),
     Location(
-        name: "Bras Basah.Bugis, Singapore Cultural District",
+        name: "Bras Basah. Bugis, Singapore Cultural District",
         coordinate: CLLocationCoordinate2D(
             latitude: 1.30099999961535,
             longitude: 103.856240000084
