@@ -974,6 +974,55 @@ var allLandmarks = [
             latitude: 1.3428897692621142,
             longitude: 103.68483062998378
         )
+    ),
+    Location(
+        name: "Bukit Batok Nature Park Lookout Point",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.3506636995824093,
+            longitude: 103.76466335699536
+        )
+    ),
+    Location(
+        name: "Bukit Timah Hill",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.3546424342222267,
+            longitude: 103.77642057355165
+        )
+    ),
+    Location(
+        name: "National Stadium",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.3050818258288195,
+            longitude: 103.87682095070915
+        )
+    ),
+    Location(
+        name: "Mandai Trail",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.3980423027463722,
+            longitude: 103.77495012990076
+        )
+    ),
+    Location(
+        name: "Downtown East",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.3774022528338536,
+            longitude: 103.95516961102548
+        )
+    ),
+    Location(
+        name: "Pasir Ris Park",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.3813058897285426,
+            longitude: 103.95039143091012
+        )
+    ),
+    Location(
+        name: "Expo",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.334885395386975,
+            longitude: 103.9579298911414
+        )
     )
     
 ]
