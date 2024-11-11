@@ -173,8 +173,24 @@ struct RouteMapView: View {
                 let settings = await center.notificationSettings()
                 authorizationStatus = settings.authorizationStatus
             }
-
-
+            .overlay(alignment: .topTrailing) {
+                NavigationLink {
+                    PhotoUploadView()
+                } label: {
+                    Image(systemName: "circle.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 60, height: 60)
+                        .foregroundStyle(.black)
+                        .overlay {
+                            Image(systemName: "camera.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 30)
+                                .foregroundStyle(Color(hex: "#9FC83E"))
+                        }
+                }
+            }
         }
     }
     

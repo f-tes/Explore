@@ -77,26 +77,9 @@ struct ContentView: View {
                         .presentationDetents([.medium])
                 }
             }
-            .overlay(alignment: .topTrailing) {
-                NavigationLink {
-                    PhotoUploadView()
-                } label: {
-                    Image(systemName: "circle.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 60, height: 60)
-                        .foregroundStyle(.black)
-                        .overlay {
-                            Image(systemName: "camera.fill")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 30)
-                                .foregroundStyle(Color(hex: "#9FC83E"))
-                        }
-                }
-//                    Button {
-//                    // Action for the camera button
-//                    photoUploadSheet = true
+//            .overlay(alignment: .topTrailing) {
+//                NavigationLink {
+//                    PhotoUploadView()
 //                } label: {
 //                    Image(systemName: "circle.fill")
 //                        .resizable()
@@ -111,10 +94,27 @@ struct ContentView: View {
 //                                .foregroundStyle(Color(hex: "#9FC83E"))
 //                        }
 //                }
-//                .sheet(isPresented: $photoUploadSheet) {
-//                    PhotoUploadView()
-//                }
-            }
+////                    Button {
+////                    // Action for the camera button
+////                    photoUploadSheet = true
+////                } label: {
+////                    Image(systemName: "circle.fill")
+////                        .resizable()
+////                        .scaledToFit()
+////                        .frame(width: 60, height: 60)
+////                        .foregroundStyle(.black)
+////                        .overlay {
+////                            Image(systemName: "camera.fill")
+////                                .resizable()
+////                                .scaledToFit()
+////                                .frame(width: 30)
+////                                .foregroundStyle(Color(hex: "#9FC83E"))
+////                        }
+////                }
+////                .sheet(isPresented: $photoUploadSheet) {
+////                    PhotoUploadView()
+////                }
+//            }
         }
     }
 }
