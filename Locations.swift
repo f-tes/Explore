@@ -234,7 +234,7 @@ var allLandmarks = [
         )
     ),
     Location(
-        name: "Raffles Singapore",
+        name: "Raffles Hotel",
         coordinate: CLLocationCoordinate2D(
             latitude: 1.29600000035821,
             longitude: 103.854039999720001
@@ -462,13 +462,6 @@ var allLandmarks = [
         coordinate: CLLocationCoordinate2D(
             latitude: 1.352,
             longitude: 103.76883
-        )
-    ),
-    Location(
-        name: "Singapore Coins and Notes Museum",
-        coordinate: CLLocationCoordinate2D(
-            latitude: 1.283,
-            longitude: 103.84452
         )
     ),
     Location(
@@ -710,7 +703,7 @@ var allLandmarks = [
         )
     ),
     Location(
-        name: "HarbourFront, Singapore",
+        name: "HarbourFront Centre, Singapore",
         coordinate: CLLocationCoordinate2D(
             latitude: 1.26500000005246,
             longitude: 103.820570000177
@@ -770,6 +763,13 @@ var allLandmarks = [
         coordinate: CLLocationCoordinate2D(
             latitude: 1.3634923620128285,
             longitude: 103.84325796312525
+        )
+    ),
+    Location(
+        name: "Bird Paradise",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.4076044693496128,
+            longitude: 103.7811726957048
         )
     )
 ]
