@@ -40,10 +40,6 @@ struct ContentView: View {
                                             .font(.headline)  // Large system font size
 
                                     }
-                                    
-                                    Text(location.name)
-                                        .font(.caption)
-                                        .foregroundColor(.primary)
                                 }
                             }
                         }
