@@ -201,6 +201,7 @@ struct RouteMapView: View {
             let request = MKDirections.Request()
             request.source = MKMapItem(placemark: MKPlacemark(coordinate: chosenLandmarks[i].coordinate))
             request.destination = MKMapItem(placemark: MKPlacemark(coordinate: chosenLandmarks[(i + 1) % chosenLandmarks.count].coordinate))
+            request.transportType = .walking  // Set transportType on the individual request
             requests.append(request)
         }
         
