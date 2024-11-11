@@ -10,6 +10,7 @@ struct ContentView: View {
     
     @State var chosenLandmarks: [Location] = []
     
+    
     @State private var isSheetPresented = false
     
     @State var photoUploadSheet = false
