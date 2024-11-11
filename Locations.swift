@@ -101,13 +101,6 @@ var allLandmarks = [
         )
     ),
     Location(
-        name: "Shophouses",
-        coordinate: CLLocationCoordinate2D(
-            latitude: 1.27699999987638,
-            longitude: 103.837336000077997
-        )
-    ),
-    Location(
         name: "Capitol Building Singapore",
         coordinate: CLLocationCoordinate2D(
             latitude: 1.29400000044934,
@@ -196,13 +189,6 @@ var allLandmarks = [
         coordinate: CLLocationCoordinate2D(
             latitude: 1.29800000044313,
             longitude: 103.850810000066005
-        )
-    ),
-    Location(
-        name: "Old Supreme Court",
-        coordinate: CLLocationCoordinate2D(
-            latitude: 1.28999999966472,
-            longitude: 103.851280000201001
         )
     ),
     Location(
