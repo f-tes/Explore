@@ -764,5 +764,12 @@ var allLandmarks = [
             latitude: 1.30099999961535,
             longitude: 103.856240000084
         )
+    ),
+    Location(
+        name: "East Coast Lagoon Food Village",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.3069438107727314,
+            longitude: 103.93496004030008
+        )
     )
 ]

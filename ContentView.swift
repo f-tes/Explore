@@ -178,3 +178,6 @@ extension Color {
     }
 }
 
+#Preview{
+    ContentView()
+}
