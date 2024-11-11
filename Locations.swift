@@ -778,5 +778,76 @@ var allLandmarks = [
             latitude: 1.2989909604748786,
             longitude: 103.78866410000002
         )
+    ),
+    Location(
+        name: "NSRCC Kranji Golf Course",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.4246628693727657,
+            longitude: 103.72865184914738
+        )
+    ),
+    Location(
+        name: "Kranji Dam",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.4387993895833529,
+            longitude: 103.7369630106728
+        )
+    ),
+    Location(
+        name: "Admiralty Park",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.4437068748172364,
+            longitude: 103.78314435652887
+        )
+    ),
+    Location(
+        name: "Woodlands Jetty",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.4528277214771579,
+            longitude: 103.77850910613405
+        )
+    ),
+    Location(
+        name: "Chua Chu Kang Park",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.3877585912634793,
+            longitude: 103.74654046759579
+        )
+    ),
+    Location(
+        name: "Marsiling Park",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.438540604719462,
+            longitude: 103.77038736735895
+        )
+    ),
+    Location(
+        name: "Malta Crescent Bunker",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.4590905994879693,
+            longitude: 103.83524349153663
+        )
+    ),
+    Location(
+        name: "Sembawang Park",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.4590683843872236,
+            longitude: 103.83631163446506
+        )
+    ),
+    Location(
+        name: "Eagles Point",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.4603995557105451,
+            longitude: 103.8416550925268
+        )
+    ),
+    Location(
+        name: "Yishun Point",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.4238213598215022,
+            longitude: 103.86089100010147
+        )
     )
+    
 ]
