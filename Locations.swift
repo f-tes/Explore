@@ -904,6 +904,76 @@ var allLandmarks = [
             latitude: 1.3169177255655427,
             longitude: 103.980636450302
         )
+    ),
+    Location(
+        name: "Punggol Point Jetty",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.4216023532101003,
+            longitude: 103.91071971405133
+        )
+    ),
+    Location(
+        name: "Adventure Bridge",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.4117818830544642,
+            longitude: 103.90415090459612
+        )
+    ),
+    Location(
+        name: "Punggol Promenade Bridge",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.4083752412155706,
+            longitude: 103.91715364165536
+        )
+    ),
+    Location(
+        name: "Lorong Halus Jetty",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.3981159185007876,
+            longitude: 103.93240746818257
+        )
+    ),
+    Location(
+        name: "Serangoon East Dam",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.400856907046413,
+            longitude: 103.92959862761555
+        )
+    ),
+    Location(
+        name: "Coney Island",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.4016322675266368,
+            longitude: 103.92970782989418
+        )
+    ),
+    Location(
+        name: "SG Discovery Center",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.3326337274438695,
+            longitude: 103.67902439775115
+        )
+    ),
+    Location(
+        name: "Japanese Garden",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.3350616177708585,
+            longitude: 103.72906335715764
+        )
+    ),
+    Location(
+        name: "Lakeside Garden",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.3401005272910254,
+            longitude: 103.72487640208907
+        )
+    ),
+    Location(
+        name: "Yunnan Gardens",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.3428897692621142,
+            longitude: 103.68483062998378
+        )
     )
     
 ]
