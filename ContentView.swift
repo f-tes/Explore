@@ -61,7 +61,6 @@ struct ContentView: View {
                             .font(.largeTitle)
                             .fontWeight(.bold)
                             .foregroundStyle(Color(hex: "#9FC83E"))
-                            .background(.black)
                             .cornerRadius(10)
                             .padding()
                     }
