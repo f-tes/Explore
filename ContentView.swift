@@ -40,10 +40,6 @@ struct ContentView: View {
                                             .font(.headline)  // Large system font size
 
                                     }
-                                    
-                                    Text(location.name)
-                                        .font(.caption)
-                                        .foregroundColor(.primary)
                                 }
                             }
                         }
@@ -61,7 +57,6 @@ struct ContentView: View {
                             .font(.largeTitle)
                             .fontWeight(.bold)
                             .foregroundStyle(Color(hex: "#9FC83E"))
-                            .background(.black)
                             .cornerRadius(10)
                             .padding()
                     }
@@ -92,7 +87,7 @@ struct ContentView: View {
                                 .scaledToFit()
                                 .frame(width: 30)
                                 .foregroundStyle(Color(hex: "#9FC83E"))
-                        }
+                    }
                 }
             }
         }
@@ -178,3 +173,6 @@ extension Color {
     }
 }
 
+#Preview{
+    ContentView()
+}

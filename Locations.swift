@@ -234,7 +234,7 @@ var allLandmarks = [
         )
     ),
     Location(
-        name: "Raffles Singapore",
+        name: "Raffles Hotel",
         coordinate: CLLocationCoordinate2D(
             latitude: 1.29600000035821,
             longitude: 103.854039999720001
@@ -465,13 +465,6 @@ var allLandmarks = [
         )
     ),
     Location(
-        name: "Singapore Coins and Notes Museum",
-        coordinate: CLLocationCoordinate2D(
-            latitude: 1.283,
-            longitude: 103.84452
-        )
-    ),
-    Location(
         name: "Singapore City Gallery",
         coordinate: CLLocationCoordinate2D(
             latitude: 1.28,
@@ -549,13 +542,6 @@ var allLandmarks = [
         )
     ),
     Location(
-        name: "Kusu Island",
-        coordinate: CLLocationCoordinate2D(
-            latitude: 1.223,
-            longitude: 103.86052
-        )
-    ),
-    Location(
         name: "HortPark, Singapore",
         coordinate: CLLocationCoordinate2D(
             latitude: 1.279,
@@ -619,31 +605,10 @@ var allLandmarks = [
         )
     ),
     Location(
-        name: "Marina Bay Sands",
-        coordinate: CLLocationCoordinate2D(
-            latitude: 1.28,
-            longitude: 103.85645
-        )
-    ),
-    Location(
-        name: "Chek Jawa, Pulau Ubin",
-        coordinate: CLLocationCoordinate2D(
-            latitude: 1.408,
-            longitude: 103.96371
-        )
-    ),
-    Location(
         name: "Merlion Park",
         coordinate: CLLocationCoordinate2D(
             latitude: 1.287,
             longitude: 103.85455
-        )
-    ),
-    Location(
-        name: "Marina Bay Sands SkyPark",
-        coordinate: CLLocationCoordinate2D(
-            latitude: 1.283,
-            longitude: 103.86081
         )
     ),
     Location(
@@ -710,13 +675,6 @@ var allLandmarks = [
         )
     ),
     Location(
-        name: "Pulau Ubin & Singapore Islands",
-        coordinate: CLLocationCoordinate2D(
-            latitude: 1.41399999977259,
-            longitude: 103.959261000401995
-        )
-    ),
-    Location(
         name: "Little India, Singapore",
         coordinate: CLLocationCoordinate2D(
             latitude: 1.30700000001345,
@@ -745,24 +703,73 @@ var allLandmarks = [
         )
     ),
     Location(
-        name: "Civic District, Singapore",
-        coordinate: CLLocationCoordinate2D(
-            latitude: 1.29299999971177,
-            longitude: 103.852220000030997
-        )
-    ),
-    Location(
-        name: "HarbourFront, Singapore",
+        name: "HarbourFront Centre, Singapore",
         coordinate: CLLocationCoordinate2D(
             latitude: 1.26500000005246,
             longitude: 103.820570000177
         )
     ),
     Location(
-        name: "Bras Basah.Bugis, Singapore Cultural District",
+        name: "Bras Basah. Bugis, Singapore Cultural District",
         coordinate: CLLocationCoordinate2D(
             latitude: 1.30099999961535,
             longitude: 103.856240000084
+        )
+    ),
+    Location(
+        name: "East Coast Lagoon Food Village",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.3069438107727314,
+            longitude: 103.93496004030008
+        )
+    ),
+    Location(
+        name: "Mount Faber Park",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.2718634725234674,
+            longitude: 103.81922322407603
+        )
+    ),
+    Location(
+        name: "Kent Ridge Park",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.283917377130876,
+            longitude: 103.79127303756881
+        )
+    ),
+    Location(
+        name: "Maxwell Food Centre",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.2803476281539212,
+            longitude: 103.84470834592531
+        )
+    ),
+    Location(
+        name: "Rifle Range Nature Reserve",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.343453346457944,
+            longitude: 103.77940749748599
+        )
+    ),
+    Location(
+        name: "Upper Pierce Reservoir Park",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.3731764182203636,
+            longitude: 103.8119567841713
+        )
+    ),
+    Location(
+        name: "Bishan Ang Mo kio Park",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.3634923620128285,
+            longitude: 103.84325796312525
+        )
+    ),
+    Location(
+        name: "Bird Paradise",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.4076044693496128,
+            longitude: 103.7811726957048
         )
     )
 ]
