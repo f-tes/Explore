@@ -3,6 +3,9 @@
 
 import SwiftUI
 import MapKit
+import CoreLocation
+import UserNotifications
+
 struct RouteMapView: View {
     @State private var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 1.2839, longitude: 103.8515),
@@ -18,6 +21,12 @@ struct RouteMapView: View {
         Location(name: "Landmark A", coordinate: CLLocationCoordinate2D(latitude: 1.2849, longitude: 103.8544)),
         Location(name: "Landmark B", coordinate: CLLocationCoordinate2D(latitude: 1.2869, longitude: 103.8524))
     ]
+    
+    @State var backSheet = false
+    
+    let center = UNUserNotificationCenter.current()
+    
+    @State private var authorizationStatus: UNAuthorizationStatus?
     
     var body: some View {
         ZStack {
@@ -82,6 +91,8 @@ struct RouteMapView: View {
                     // Back Button
                     Button(action: {
                         // TODO: Define the action to go back to ContentView
+                        
+                        backSheet = true
                     }) {
                         Image(systemName: "arrow.left")
                             .font(.title)
@@ -92,10 +103,41 @@ struct RouteMapView: View {
                             .opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
 
                     }
+                    .fullScreenCover(isPresented: $backSheet) {
+                        ContentView()
+                    }
                     
                     // Play Button (larger and centered)
                     Button(action: {
                         // TODO: Define the action for play
+                        
+                        //Allow for Location Based Notification
+                        let locations = allLandmarks.map({ $0.coordinate })
+                        
+                        locations.forEach { location in
+                            if authorizationStatus == .authorized || authorizationStatus == .provisional {
+                                
+                                let content = UNMutableNotificationContent()
+                                
+                                content.title = "Exploro"
+                                content.subtitle = "You are near a landmark!"
+                                content.body = "Click the camera button to take a photo at the landmark!"
+                                
+                                content.sound = .default
+                                
+                                // Triggers when within 20m from the location
+                                let region = CLCircularRegion(center: location, radius: 20.0, identifier: "Landmark")
+                                
+                                region.notifyOnEntry = true
+                                region.notifyOnExit = false
+                                
+                                let trigger = UNLocationNotificationTrigger(region: region, repeats: true)
+                                
+                                center.add(UNNotificationRequest(identifier: "Landmark",
+                                                                 content: content,
+                                                                 trigger: trigger))
+                            }
+                        }
                     }) {
                         Image(systemName: "play.fill")
                             .font(.largeTitle)
@@ -106,6 +148,7 @@ struct RouteMapView: View {
                             .opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
 
                     }
+                    
                     
                     // Center Me Button
                     Button(action: {
@@ -167,4 +210,8 @@ struct RouteMapView: View {
             self.totalDistance = distanceTotal / 1000.0 // Convert to km
         }
     }
+}
+
+#Preview{
+    ContentView()
 }

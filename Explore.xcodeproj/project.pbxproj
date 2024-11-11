@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C8DB37D2CE1A28D00BF7485 /* PhotoUploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8DB37C2CE1A28D00BF7485 /* PhotoUploadView.swift */; };
+		3C8DB3802CE1A2E600BF7485 /* Forever in Frameworks */ = {isa = PBXBuildFile; productRef = 3C8DB37F2CE1A2E600BF7485 /* Forever */; };
 		9D9F99912CDF0B22003B209D /* ExploreApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9F99902CDF0B22003B209D /* ExploreApp.swift */; };
-		9D9F99932CDF0B22003B209D /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9F99922CDF0B22003B209D /* StartView.swift */; };
+		9D9F99932CDF0B22003B209D /* RouteMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9F99922CDF0B22003B209D /* RouteMapView.swift */; };
 		9D9F99952CDF0B24003B209D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D9F99942CDF0B24003B209D /* Assets.xcassets */; };
 		9D9F99982CDF0B24003B209D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D9F99972CDF0B24003B209D /* Preview Assets.xcassets */; };
 		9D9F99A22CDF0B25003B209D /* ExploreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9F99A12CDF0B25003B209D /* ExploreTests.swift */; };
@@ -36,9 +38,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3C8DB37C2CE1A28D00BF7485 /* PhotoUploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoUploadView.swift; sourceTree = "<group>"; };
 		9D9F998D2CDF0B22003B209D /* Explore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Explore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D9F99902CDF0B22003B209D /* ExploreApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreApp.swift; sourceTree = "<group>"; };
-		9D9F99922CDF0B22003B209D /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		9D9F99922CDF0B22003B209D /* RouteMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteMapView.swift; sourceTree = "<group>"; };
 		9D9F99942CDF0B24003B209D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9D9F99972CDF0B24003B209D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9D9F999D2CDF0B25003B209D /* ExploreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExploreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -55,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C8DB3802CE1A2E600BF7485 /* Forever in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,7 +105,8 @@
 			isa = PBXGroup;
 			children = (
 				9D9F99902CDF0B22003B209D /* ExploreApp.swift */,
-				9D9F99922CDF0B22003B209D /* StartView.swift */,
+				9D9F99922CDF0B22003B209D /* RouteMapView.swift */,
+				3C8DB37C2CE1A28D00BF7485 /* PhotoUploadView.swift */,
 				9D9F99942CDF0B24003B209D /* Assets.xcassets */,
 				9D9F99962CDF0B24003B209D /* Preview Content */,
 			);
@@ -221,6 +226,9 @@
 				Base,
 			);
 			mainGroup = 9D9F99842CDF0B22003B209D;
+			packageReferences = (
+				3C8DB37E2CE1A2E600BF7485 /* XCRemoteSwiftPackageReference "forever" */,
+			);
 			productRefGroup = 9D9F998E2CDF0B22003B209D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -264,8 +272,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9DCCBBAA2CDF3B2600884F54 /* Locations.swift in Sources */,
-				9D9F99932CDF0B22003B209D /* StartView.swift in Sources */,
+				9D9F99932CDF0B22003B209D /* RouteMapView.swift in Sources */,
 				9DCCBBAC2CDF3BFF00884F54 /* ContentView.swift in Sources */,
+				3C8DB37D2CE1A28D00BF7485 /* PhotoUploadView.swift in Sources */,
 				9D9F99912CDF0B22003B209D /* ExploreApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -590,6 +599,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3C8DB37E2CE1A2E600BF7485 /* XCRemoteSwiftPackageReference "forever" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jiachenyee/forever";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3C8DB37F2CE1A2E600BF7485 /* Forever */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3C8DB37E2CE1A2E600BF7485 /* XCRemoteSwiftPackageReference "forever" */;
+			productName = Forever;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9D9F99852CDF0B22003B209D /* Project object */;
 }

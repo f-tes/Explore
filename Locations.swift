@@ -771,5 +771,12 @@ var allLandmarks = [
             latitude: 1.4076044693496128,
             longitude: 103.7811726957048
         )
+    ),
+    Location(
+        name: "Innovis",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.2989909604748786,
+            longitude: 103.78866410000002
+        )
     )
 ]
