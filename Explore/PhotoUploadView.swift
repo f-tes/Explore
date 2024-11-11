@@ -24,12 +24,26 @@ struct PhotoUploadView: View {
                 }
             }.tabViewStyle(.page)
             
-            Button("Open camera") {
-                self.showCamera.toggle()
-            }
-            .fullScreenCover(isPresented: self.$showCamera) {
-                accessCameraView(selectedImage: $images)
-                    .background(.black)
+            HStack{
+                Spacer()
+                Spacer()
+                Spacer()
+                Button("Capture") {
+                    self.showCamera.toggle()
+                }
+                .fullScreenCover(isPresented: self.$showCamera) {
+                    accessCameraView(selectedImage: $images)
+                        .background(.black)
+                }
+                Spacer()
+                Spacer()
+                Button{
+                    images = []
+                } label:{
+                    Image(systemName: "trash.fill")
+                }
+                .padding()
+                Spacer()
             }
         }
     }

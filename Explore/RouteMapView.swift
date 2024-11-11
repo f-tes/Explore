@@ -125,8 +125,8 @@ struct RouteMapView: View {
                                 
                                 content.sound = .default
                                 
-                                // Triggers when within 20m from the location
-                                let region = CLCircularRegion(center: location, radius: 20.0, identifier: "Landmark")
+                                // Triggers when within 50m from the location
+                                let region = CLCircularRegion(center: location, radius: 50.0, identifier: "Landmark")
                                 
                                 region.notifyOnEntry = true
                                 region.notifyOnExit = false
@@ -167,7 +167,12 @@ struct RouteMapView: View {
                 }
                 .padding(.bottom, 20) // Optional padding for button row spacing
             }
-
+            .task {
+                _ = try? await center.requestAuthorization(options: [.alert, .sound, .badge])
+                
+                let settings = await center.notificationSettings()
+                authorizationStatus = settings.authorizationStatus
+            }
 
 
         }
