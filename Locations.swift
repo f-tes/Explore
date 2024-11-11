@@ -771,5 +771,47 @@ var allLandmarks = [
             latitude: 1.3069438107727314,
             longitude: 103.93496004030008
         )
+    ),
+    Location(
+        name: "Mount Faber Park",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.2718634725234674,
+            longitude: 103.81922322407603
+        )
+    ),
+    Location(
+        name: "Kent Ridge Park",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.283917377130876,
+            longitude: 103.79127303756881
+        )
+    ),
+    Location(
+        name: "Maxwell Food Centre",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.2803476281539212,
+            longitude: 103.84470834592531
+        )
+    ),
+    Location(
+        name: "Rifle Range Nature Reserve",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.343453346457944,
+            longitude: 103.77940749748599
+        )
+    ),
+    Location(
+        name: "Upper Pierce Reservoir Park",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.3731764182203636,
+            longitude: 103.8119567841713
+        )
+    ),
+    Location(
+        name: "Bishan Ang Mo kio Park",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.3634923620128285,
+            longitude: 103.84325796312525
+        )
     )
 ]

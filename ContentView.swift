@@ -91,7 +91,7 @@ struct ContentView: View {
                                 .scaledToFit()
                                 .frame(width: 30)
                                 .foregroundStyle(Color(hex: "#9FC83E"))
-                        }
+                    }
                 }
             }
         }
