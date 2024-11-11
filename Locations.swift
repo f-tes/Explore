@@ -619,13 +619,6 @@ var allLandmarks = [
         )
     ),
     Location(
-        name: "Marina Bay Sands",
-        coordinate: CLLocationCoordinate2D(
-            latitude: 1.28,
-            longitude: 103.85645
-        )
-    ),
-    Location(
         name: "Chek Jawa, Pulau Ubin",
         coordinate: CLLocationCoordinate2D(
             latitude: 1.408,
