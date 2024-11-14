@@ -1023,6 +1023,55 @@ var allLandmarks = [
             latitude: 1.334885395386975,
             longitude: 103.9579298911414
         )
+    ),
+    Location(
+        name: "Keppel Hill Bunker",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.2709643581063408,
+            longitude: 103.81583960171925
+        )
+    ),
+    Location(
+        name: "Ice Cream Museum",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.3027230759745831,
+            longitude: 103.81246286463325
+        )
+    ),
+    Location(
+        name: "Lee Kong Chian Natural History Museum",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.3014009985124682,
+            longitude: 103.7736565766955
+        )
+    ),
+    Location(
+        name: "Singapore Air Force Museum",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.3467374953155573,
+            longitude: 103.89939300049218
+        )
+    ),
+    Location(
+        name: "Singaore Navy Museum",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.3167957921088542,
+            longitude: 104.0163259707711
+        )
+    ),
+    Location(
+        name: "Sentosa Cove",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.2451367613283078,
+            longitude: 103.8401461507898
+        )
+    ),
+    Location(
+        name: "Tanjong Beach",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.2416481687005276,
+            longitude: 103.82936782717309
+        )
     )
     
 ]
