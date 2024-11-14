@@ -184,6 +184,9 @@ struct RouteMapView: View {
                                     if region.notifyOnExit == false{
                                         allowCamera = false
                                     }
+                                    if let location = locationManager.currentLocation {
+                                        region.contains(CLLocationCoordinate2D(latitude: location.coordinate.latitude,longitude: location.coordinate.latitude))
+                                    }
                                     
                                     let trigger = UNLocationNotificationTrigger(region: region, repeats: true)
                                     
@@ -230,7 +233,7 @@ struct RouteMapView: View {
                 }
             }
                     .overlay(alignment: .topTrailing) {
-                        if allowCamera {
+                        if allowCamera == true {
                             NavigationLink {
                                 VStack {
                                     TabView{
@@ -279,6 +282,7 @@ struct RouteMapView: View {
                                     }
                             }
                         } else {
+                            
                 }
             }
             .onAppear {
