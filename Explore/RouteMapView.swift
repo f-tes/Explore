@@ -61,6 +61,7 @@ struct RouteMapView: View {
     @Forever("images") var images: [Data] = []
     
     @State private var showCamera = false
+    
 //    var locations: [Location] = [
 //        Location(name: "Start / End", coordinate: CLLocationCoordinate2D(latitude: 1.2839, longitude: 103.8515)),
 //        Location(name:"Landmark A", coordinate: CLLocationCoordinate2D(latitude: 1.2849, longitude: 103.8544)),
@@ -74,6 +75,8 @@ struct RouteMapView: View {
     @State private var authorizationStatus: UNAuthorizationStatus?
     @AppStorage("allowCamera") var allowCamera = false
     
+    @State private var isInitialLocationSet = false // Track initial centering
+      
     @StateObject private var locationManager = LocationManager()
 
     var body: some View {
@@ -83,14 +86,27 @@ struct RouteMapView: View {
                 Map(initialPosition: .region(region)) {
                     UserAnnotation()
                     ForEach(chosenLandmarks) { location in
-                        Annotation(location.name, coordinate: location.coordinate, anchor: .bottom) {
-                            Image(systemName: "mappin.circle.fill")
-                                .padding(4)
-                                .foregroundStyle(.primary)
-                                .background(Color.red)
-                                .cornerRadius(4)
+                        if location.name == "Current Location" {
+                            // Use a unique icon for the current location
+                            Annotation(location.name, coordinate: location.coordinate, anchor: .bottom) {
+                                Image(systemName: "location.circle.fill")
+                                    .padding(6)
+                                    .foregroundStyle(.yellow)
+                                    .background(Color.black.opacity(0.6))
+                                    .cornerRadius(8)
+                            }
+                        } else {
+                            // Default icon for other landmarks
+                            Annotation(location.name, coordinate: location.coordinate, anchor: .bottom) {
+                                Image(systemName: "mappin.circle.fill")
+                                    .padding(4)
+                                    .foregroundStyle(.primary)
+                                    .background(Color.red)
+                                    .cornerRadius(4)
+                            }
                         }
                     }
+
                         if let location = locationManager.currentLocation {
                             Annotation("Your Location", coordinate:CLLocationCoordinate2D(latitude: location.coordinate.latitude,longitude: location.coordinate.latitude), anchor: .bottom) {
                                 Image(systemName: "figure.walk")
@@ -110,8 +126,17 @@ struct RouteMapView: View {
                 .mapStyle(.standard(elevation: .realistic))
                 .edgesIgnoringSafeArea(.all)
                 .onAppear {
+                    locationManager.startLocationUpdates()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        addCurrentLocationToChosenLandmarks()
+                    }
+                    
+                    if let currentLocation = locationManager.currentLocation {
+                        region.center = currentLocation.coordinate
+                    }
                     calculateRouteDistance()
                 }
+                
                 
                 
                 // UI components like distance and button
@@ -288,6 +313,10 @@ struct RouteMapView: View {
             .onAppear {
                 // Start updating location when the view appears
                 locationManager.startLocationUpdates()  // Use the method from LocationManager
+                
+                if let currentLocation = locationManager.currentLocation{
+                    region.center = currentLocation.coordinate
+                }
             }
             .onDisappear {
                 // Stop location updates when the view disappears to save battery
@@ -296,8 +325,33 @@ struct RouteMapView: View {
         }
     }
     
+    func addCurrentLocationToChosenLandmarks() {
+        guard !isInitialLocationSet, let currentLocation = locationManager.currentLocation else {
+            print("Initial location is already set or not available.")
+            return
+        }
+        
+        let userLocation = Location(name: "Current Location", coordinate: currentLocation.coordinate)
+        chosenLandmarks.insert(userLocation, at: 0)
+        isInitialLocationSet = true
+        print("Added user's location to chosenLandmarks: \(userLocation.coordinate)")
+        calculateRouteDistance()
+    }
+
+    
     func calculateRouteDistance() {
+        
+        print(chosenLandmarks)
+        print("Current Location: \(String(describing: locationManager.currentLocation))")
+        print("Region center: \(region.center)")
+
+        
         var requests = [MKDirections.Request]()
+        
+        if let currentLocation = locationManager.currentLocation {
+            // Insert the current location at the beginning of chosenLandmarks
+            chosenLandmarks.insert(Location(name: "Current Location", coordinate: currentLocation.coordinate), at: 0)
+        }
         
         for i in 0..<chosenLandmarks.count {
             let request = MKDirections.Request()
@@ -375,8 +429,8 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
     }
 }
 
-
-#Preview{
-    RouteMapView(chosenLandmarks: .constant([]))
-}
-
+//
+//#Preview{
+//    RouteMapView(chosenLandmarks: .constant([]))
+//}
+//
