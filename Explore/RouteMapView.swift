@@ -233,20 +233,30 @@ struct RouteMapView: View {
                         
                         
                         // End Button
+                        // End Button
                         Button(action: {
-                            images = []
-                            backSheet = true
+                            // Recenter the map to the user's current location
+                            if let currentLocation = locationManager.currentLocation {
+                                // Update the region's center using currentLocation
+                                withAnimation {
+                                    region = MKCoordinateRegion(
+                                        center: currentLocation.coordinate,
+                                        span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+                                    )
+                                }
+                            } else {
+                                print("Current location not available")
+                            }
                         }) {
                             Image(systemName: "xmark")
                                 .font(.title)
                                 .bold()
-                            
                                 .foregroundColor(.black) // Black icon color
                                 .frame(width: 60, height: 60)
                                 .background(Circle().fill(Color(hex: "#9FC83E"))) // Green circle background
-                                .opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
-                            
+                                .opacity(0.8)
                         }
+
                     }
                     .padding(.bottom, 20) // Optional padding for button row spacing
                 }
@@ -313,15 +323,32 @@ struct RouteMapView: View {
             .onAppear {
                 // Start updating location when the view appears
                 locationManager.startLocationUpdates()  // Use the method from LocationManager
-                
-                if let currentLocation = locationManager.currentLocation{
-                    region.center = currentLocation.coordinate
+
+                // Check if currentLocation is available
+                if let currentLocation = locationManager.currentLocation {
+                    region = MKCoordinateRegion(
+                        center: currentLocation.coordinate,
+                        span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+                    )
+                    print("Region updated to user's current location on appear.")
+                } else {
+                    print("Current location not available on appear.")
                 }
             }
+//            .onReceive(locationManager.$currentLocation) { newLocation in
+//                // Update the region whenever currentLocation changes
+//                guard let newLocation = newLocation else { return }
+//                region = MKCoordinateRegion(
+//                    center: newLocation.coordinate,
+//                    span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+//                )
+//                print("Region updated to new current location: \(newLocation.coordinate)")
+//            }
             .onDisappear {
                 // Stop location updates when the view disappears to save battery
                 locationManager.stopLocationUpdates()  // Use the method from LocationManager
             }
+
         }
     }
     
