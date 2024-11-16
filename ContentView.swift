@@ -145,30 +145,60 @@ struct SheetView: View {
                 .background(Color.gray.opacity(0.1))
                 .cornerRadius(10)
                 .padding()
+                .autocorrectionDisabled()
             
             // Toggle switches for each landmark
+//            ScrollView {
+//                ForEach(filteredLandmarks, id: \.id) { landmark in
+//                    HStack {
+//                        Text("\(landmark.name)")
+//                        Spacer()
+//                        Toggle("", isOn: Binding(get: {
+//                            chosenLandmarks.contains(where: { $0.id == landmark.id })
+//                        }, set: { value in
+//                            if value {
+//                                chosenLandmarks.append(landmark)
+//                            } else {
+//                                if let index = chosenLandmarks.firstIndex(where: { $0.id == landmark.id }) {
+//                                    chosenLandmarks.remove(at: index)
+//                                }
+//                            }
+//                        }))
+//                        .labelsHidden()
+//                    }
+//                    .padding()
+//                    .cornerRadius(10)
+//                }
+//            }
+            
             ScrollView {
                 ForEach(filteredLandmarks, id: \.id) { landmark in
                     HStack {
-                        Text("\(landmark.name)")
+                        Text(landmark.name)
+                            .padding(.leading, 12)
                         Spacer()
-                        Toggle("", isOn: Binding(get: {
-                            chosenLandmarks.contains(where: { $0.id == landmark.id })
-                        }, set: { value in
-                            if value {
-                                chosenLandmarks.append(landmark)
-                            } else {
-                                if let index = chosenLandmarks.firstIndex(where: { $0.id == landmark.id }) {
-                                    chosenLandmarks.remove(at: index)
-                                }
-                            }
-                        }))
-                        .labelsHidden()
+                        if chosenLandmarks.contains(where: { $0.id == landmark.id }) {
+                            Image(systemName: "checkmark")
+                                .padding(.trailing, 16)
+
+                                .foregroundColor(.blue)
+                        }
                     }
                     .padding()
+                    .background(chosenLandmarks.contains(where: { $0.id == landmark.id }) ? Color.blue.opacity(0.2) : Color.clear)
                     .cornerRadius(10)
+                    .onTapGesture {
+                        if let index = chosenLandmarks.firstIndex(where: { $0.id == landmark.id }) {
+                            chosenLandmarks.remove(at: index)
+                        } else {
+                            chosenLandmarks.append(landmark)
+                        }
+                    }
                 }
             }
+
+            
+            
                 Button {
                     if chosenLandmarks.count >= 2{
                         routeMapSheet = true
@@ -202,7 +232,7 @@ extension Color {
         self.init(red: r, green: g, blue: b)
     }
 }
-
-#Preview{
-    ContentView()
-}
+//
+//#Preview{
+//    ContentView()
+//}

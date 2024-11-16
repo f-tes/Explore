@@ -1,4 +1,5 @@
-// TODO : 1) What happens when you press play 2) save story template thing 3) recenter the map 4) notifications 5) more mapkit features (?) 6) direction arrows on path 7) user tracking
+//// TODO : 1) What happens when you press play 2) save story template thing 3) recenter the map √  4) notifications 5) more mapkit features (?) 6) put numbers on the pins to indicate order 7) user tracking 8) icon 8) fix organisation medium √ 9) more locations + picture, description of each? 10) need dynamically update region and check 11) recenter map button √  12) app store collaterals 13) open to center
+
 
 import SwiftUI
 import MapKit
@@ -44,20 +45,32 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     func stopLocationUpdates() {
         locationManager.stopUpdatingLocation()
     }
+    
 }
 
 
 struct RouteMapView: View {
-    @State private var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 1.2839, longitude: 103.8515),
-        span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-    )
     @State private var totalDistance: Double = 0.0
     @State private var polylines: [MKPolyline] = []
     
     @Binding var chosenLandmarks: [Location]
     
     @Forever("images") var images: [Data] = []
+    
+    
+    
+    
+    @State private var isPlaying = false // Tracks if the button is in "playing" state
+
+    
+    
+
+    @State private var mapCamera: MapCameraPosition = .region(MKCoordinateRegion(
+        center: CLLocationCoordinate2D(latitude: 1.2839, longitude: 103.8515),
+        span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+    ))
+        
+    
     
     @State private var showCamera = false
     
@@ -82,7 +95,7 @@ struct RouteMapView: View {
         NavigationStack{
             ZStack {
                 // Map view and polylines
-                Map(initialPosition: .region(region)) {
+                Map(position: $mapCamera) {
                     UserAnnotation()
                     ForEach(chosenLandmarks) { location in
                         if location.name == "Current Location" {
@@ -129,9 +142,8 @@ struct RouteMapView: View {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         addCurrentLocationToChosenLandmarks()
                     }
-                    
                     if let currentLocation = locationManager.currentLocation {
-                        region.center = currentLocation.coordinate
+                        mapCamera = .region(MKCoordinateRegion(center: currentLocation.coordinate, span: .init(latitudeDelta: 0.5, longitudeDelta: 0.5)))
                     }
                     calculateRouteDistance()
                 }
@@ -180,65 +192,48 @@ struct RouteMapView: View {
                         
                         // Play Button (larger and centered)
                         Button(action: {
+                            isPlaying.toggle() // Toggle between play and pause
                             
-                            // TODO: Define the action for play
-                            
-                            //Allow for Location Based Notification
-                            let locations = allLandmarks.map({ $0.coordinate })
-                            
-                            locations.forEach { location in
-                                if authorizationStatus == .authorized || authorizationStatus == .provisional {
-                                    
-
-                        
-                                    // Triggers when within 50m from the location
-                                    let region = CLCircularRegion(center: location, radius: 50.0, identifier: "Landmark")
-                                    
-                                    region.notifyOnEntry = true
-                                    region.notifyOnExit = false
-
-                                    
-                                    if region.notifyOnEntry == true{
-
-                                        let content = UNMutableNotificationContent()
+                            if isPlaying {
+                                // Play action
+                                
+                                // Allow for Location Based Notification
+                                let locations = allLandmarks.map { $0.coordinate }
+                                
+                                locations.forEach { location in
+                                    if authorizationStatus == .authorized || authorizationStatus == .provisional {
+                                        // Triggers when within 50m from the location
+                                        let region = CLCircularRegion(center: location, radius: 100.0, identifier: UUID().uuidString)
+                                        region.notifyOnEntry = true
+                                        region.notifyOnExit = false
                                         
+                                        let content = UNMutableNotificationContent()
                                         content.title = "Exploro"
                                         content.subtitle = "You are near a landmark!"
                                         content.body = "Click the camera button to take a photo at the landmark!"
-                                        
                                         content.sound = .default
-
+                                        
                                         if let location = locationManager.currentLocation {
-                                            region.contains(CLLocationCoordinate2D(latitude: location.coordinate.latitude,longitude: location.coordinate.latitude))
+                                            region.contains(CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.latitude))
                                         }
                                         
-                                        
-                                        let trigger = UNLocationNotificationTrigger(region: region, repeats: true)
-                                        let request = UNNotificationRequest(identifier: "FiveSecond", content: content, trigger: trigger) // Schedule the notification.
+                                        let trigger = UNLocationNotificationTrigger(region: region, repeats: false)
+                                        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
                                         let center = UNUserNotificationCenter.current()
-                                        
-                                        
-                                        center.add(UNNotificationRequest(identifier: "Landmark",
-                                                                         content: content,
-                                                                         trigger: trigger))
-                                        
+                                        center.add(request)
                                     }
-                                    if region.notifyOnExit == false{
-//                                        allowCamera = false
-                                    }
-
-
                                 }
+                            } else {
+                                // Pause action - add any pause-specific logic here if needed
                             }
                         }) {
-                            Image(systemName: "play.fill")
+                            Image(systemName: isPlaying ? "pause.fill" : "play.fill")
                                 .font(.largeTitle)
                                 .bold()
-                                .foregroundColor(.black) // Black icon color
+                                .foregroundColor(.black)
                                 .frame(width: 80, height: 80)
-                                .background(Circle().fill(Color(hex: "#9FC83E"))) // Green circle background
-                                .opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
-                            
+                                .background(Circle().fill(Color(hex: "#9FC83E")))
+                                .opacity(0.8)
                         }
                         
                         
@@ -248,16 +243,16 @@ struct RouteMapView: View {
                             if let currentLocation = locationManager.currentLocation {
                                 // Update the region's center using currentLocation
                                 withAnimation {
-                                    region = MKCoordinateRegion(
+                                    mapCamera = .region(MKCoordinateRegion(
                                         center: currentLocation.coordinate,
                                         span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-                                    )
+                                    ))
                                 }
                             } else {
                                 print("Current location not available")
                             }
                         }) {
-                            Image(systemName: "xmark")
+                            Image(systemName: "location.fill")
                                 .font(.title)
                                 .bold()
                                 .foregroundColor(.black) // Black icon color
@@ -335,10 +330,10 @@ struct RouteMapView: View {
 
                 // Check if currentLocation is available
                 if let currentLocation = locationManager.currentLocation {
-                    region = MKCoordinateRegion(
+                    mapCamera = .region(MKCoordinateRegion(
                         center: currentLocation.coordinate,
                         span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-                    )
+                    ))
                     print("Region updated to user's current location on appear.")
                 } else {
                     print("Current location not available on appear.")
@@ -379,7 +374,7 @@ struct RouteMapView: View {
         
         print(chosenLandmarks)
         print("Current Location: \(String(describing: locationManager.currentLocation))")
-        print("Region center: \(region.center)")
+        print("Region center: \(String(describing: mapCamera.region?.center))")
 
         
         var requests = [MKDirections.Request]()
@@ -464,9 +459,3 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
         }
     }
 }
-
-//
-//#Preview{
-//    RouteMapView(chosenLandmarks: .constant([]))
-//}
-//

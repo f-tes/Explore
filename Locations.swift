@@ -1072,6 +1072,42 @@ var allLandmarks = [
             latitude: 1.2416481687005276,
             longitude: 103.82936782717309
         )
-    )
+    ),
     
+    Location(
+        name: "Palawan Beach",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.247905,
+            longitude: 103.823387
+        )
+    ),
+    
+    Location(
+        name: "Haji Lane",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.300729,
+            longitude: 103.859140
+        )
+    ),
+    
+    Location(
+        name: "Joo Chiat Peranakan Shophouses",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.3105142370645813,
+            longitude: 103.90292340494457
+        )
+    ),
+        
+    Location(
+        name: "One Holland V",
+        coordinate: CLLocationCoordinate2D(
+            latitude: 1.311707018313559,
+            longitude: 103.79446861375109
+        )
+    ),
+    Location(
+        name: "Lower Seletar Resevoir Park", 
+        coordinate: CLLocationCoordinate2D (
+            latitude: 1.4100963736993735,
+            longitude: 103.83210913998103) )
 ]
