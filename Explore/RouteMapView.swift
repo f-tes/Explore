@@ -1,4 +1,4 @@
-//// TODO : 1) What happens when you press play 2) save story template thing 3) recenter the map √  4) notifications 5) more mapkit features (?) 6) put numbers on the pins to indicate order 7) user tracking 8) icon 8) fix organisation medium √ 9) more locations + picture, description of each? 10) need dynamically update region and check 11) recenter map button √  12) app store collaterals 13) open to center 14) MAP DOESNT STRETCH FULLY VERTICALLY , BUTTONS NOT ALIGNED WHEN USE ACTUAL IPHONE?
+//// TODO : 1) What happens when you press play 2) save story template thing 3) recenter the map √  4) notifications 5) more mapkit features (?) 6) put numbers on the pins to indicate order 7) user tracking 8) icon 8) fix organisation medium √ 9) more locations + picture, description of each? 10) need dynamically update region and check 11) recenter map button √  12) app store collaterals 13) open to center 14) MAP DOESNT STRETCH FULLY VERTICALLY , BUTTONS NOT ALIGNED WHEN USE ACTUAL IPHONE?  15) how to break loop
 
 
 import SwiftUI
