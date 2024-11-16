@@ -1,4 +1,4 @@
-//// TODO : 1) What happens when you press play 2) save story template thing 3) recenter the map √  4) notifications 5) more mapkit features (?) 6) put numbers on the pins to indicate order 7) user tracking 8) icon 8) fix organisation medium √ 9) more locations + picture, description of each? 10) need dynamically update region and check 11) recenter map button √  12) app store collaterals 13) open to center
+//// TODO : 1) What happens when you press play 2) save story template thing 3) recenter the map √  4) notifications 5) more mapkit features (?) 6) put numbers on the pins to indicate order 7) user tracking 8) icon 8) fix organisation medium √ 9) more locations + picture, description of each? 10) need dynamically update region and check 11) recenter map button √  12) app store collaterals 13) open to center 14) MAP DOESNT STRETCH FULLY VERTICALLY , BUTTONS NOT ALIGNED WHEN USE ACTUAL IPHONE?
 
 
 import SwiftUI
@@ -71,14 +71,8 @@ struct RouteMapView: View {
     ))
         
     
-    
     @State private var showCamera = false
-    
-//    var locations: [Location] = [
-//        Location(name: "Start / End", coordinate: CLLocationCoordinate2D(latitude: 1.2839, longitude: 103.8515)),
-//        Location(name:"Landmark A", coordinate: CLLocationCoordinate2D(latitude: 1.2849, longitude: 103.8544)),
-//        Location(name: "Landmark B", coordinate: CLLocationCoordinate2D(latitude: 1.2869, longitude: 103.8524))
-//    ]
+
     
     @State var backSheet = false
     
@@ -95,6 +89,9 @@ struct RouteMapView: View {
         NavigationStack{
             ZStack {
                 // Map view and polylines
+                
+                let location = locationManager.currentLocation
+                
                 Map(position: $mapCamera) {
                     UserAnnotation()
                     ForEach(chosenLandmarks) { location in
