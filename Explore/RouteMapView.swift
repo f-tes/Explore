@@ -61,18 +61,18 @@ struct RouteMapView: View {
     
     
     @State private var isPlaying = false // Tracks if the button is in "playing" state
-
     
     
-
+    
+    
     @State private var mapCamera: MapCameraPosition = .region(MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 1.2839, longitude: 103.8515),
         span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
     ))
-        
+    
     
     @State private var showCamera = false
-
+    
     
     @State var backSheet = false
     
@@ -82,9 +82,10 @@ struct RouteMapView: View {
     @AppStorage("allowCamera") var allowCamera = false
     
     @State private var isInitialLocationSet = false // Track initial centering
-      
+    
     @StateObject private var locationManager = LocationManager()
-
+    @State var photoExportSheet = false
+    
     var body: some View {
         NavigationStack{
             ZStack {
@@ -115,15 +116,15 @@ struct RouteMapView: View {
                             }
                         }
                     }
-
-                        if let location = locationManager.currentLocation {
-                            Annotation("Your Location", coordinate:CLLocationCoordinate2D(latitude: location.coordinate.latitude,longitude: location.coordinate.latitude), anchor: .bottom) {
-                                Image(systemName: "figure.walk")
-                                    .padding(4)
-                                    .foregroundStyle(.primary)
-                                    .background(Color.yellow)
-                                    .cornerRadius(4)
-                            }
+                    
+                    if let location = locationManager.currentLocation {
+                        Annotation("Your Location", coordinate:CLLocationCoordinate2D(latitude: location.coordinate.latitude,longitude: location.coordinate.latitude), anchor: .bottom) {
+                            Image(systemName: "figure.walk")
+                                .padding(4)
+                                .foregroundStyle(.primary)
+                                .background(Color.yellow)
+                                .cornerRadius(4)
+                        }
                     }
                     Group {
                         ForEach(polylines, id: \.self) { polyline in
@@ -257,7 +258,7 @@ struct RouteMapView: View {
                                 .background(Circle().fill(Color(hex: "#9FC83E"))) // Green circle background
                                 .opacity(0.8)
                         }
-
+                        
                     }
                     .padding(.bottom, 20) // Optional padding for button row spacing
                 }
@@ -268,63 +269,82 @@ struct RouteMapView: View {
                     authorizationStatus = settings.authorizationStatus
                 }
             }
-                    .overlay(alignment: .topTrailing) {
-                        if allowCamera == true {
-                            NavigationLink {
-                                VStack {
-                                    TabView{
-                                        ForEach(images, id: \.self) { data in
-                                            Image(uiImage: UIImage(data: data) ?? UIImage())
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(width: 300)
-                                        }
-                                    }.tabViewStyle(.page)
-                                    
-                                    VStack{
-                                        Spacer()
-                                        Button{
-                                            self.showCamera.toggle()
-                                        } label:{
-                                            HStack{
-                                                Image(systemName: "camera.shutter.button.fill")
-                                                Text("Capture")
-                                            }
-                                            .padding()
-                                            .background(Color(hex: "#9FC83E"))
-                                            .cornerRadius(10)
-                                            .padding()
-                                            .foregroundStyle(.black)
-                                            .fontWeight(.bold)
-                                        }
-                                        .fullScreenCover(isPresented: self.$showCamera) {
-                                            accessCameraView(selectedImage: $images)
-                                                .background(.black)
-                                        }
-                                    }
+            .overlay(alignment: .topLeading) {
+                HStack{
+                    NavigationLink {
+                        VStack {
+                            TabView{
+                                ForEach(images, id: \.self) { data in
+                                    Image(uiImage: UIImage(data: data) ?? UIImage())
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 300)
                                 }
-                            } label: {
-                                Image(systemName: "circle.fill")
+                            }.tabViewStyle(.page)
+                            
+                            VStack{
+                                Spacer()
+                                Button{
+                                    self.showCamera.toggle()
+                                } label:{
+                                    HStack{
+                                        Image(systemName: "camera.shutter.button.fill")
+                                        Text("Capture")
+                                    }
+                                    .padding(.leading)
+                                    .background(Color(hex: "#9FC83E"))
+                                    .cornerRadius(10)
+                                    .padding()
+                                    .foregroundStyle(.black)
+                                    .fontWeight(.bold)
+                                }
+                                .fullScreenCover(isPresented: self.$showCamera) {
+                                    accessCameraView(selectedImage: $images)
+                                        .background(.black)
+                                }
+                            }
+                        }
+                    } label: {
+                        Image(systemName: "circle.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 60, height: 60)
+                            .foregroundStyle(.black)
+                            .overlay {
+                                Image(systemName: "camera.fill")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 60, height: 60)
-                                    .foregroundStyle(.black)
-                                    .overlay {
-                                        Image(systemName: "camera.fill")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 30)
-                                            .foregroundStyle(Color(hex: "#9FC83E"))
-                                    }
+                                    .frame(width: 30)
+                                    .foregroundStyle(Color(hex: "#9FC83E"))
                             }
-                        } else {
-                            
+                    }
+                    Spacer()
+                    Button{
+                        photoExportSheet = true
+                    } label: {
+                        Image(systemName: "circle.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 60, height: 60)
+                            .foregroundStyle(.black)
+                            .overlay {
+                                Image(systemName: "xmark")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 30)
+                                    .foregroundStyle(Color(hex: "#9FC83E"))
+                            }
+                    }
+                    .fullScreenCover(isPresented: $photoExportSheet){
+                        PhotoExport(images: $images)
+                    }
                 }
+                .padding()
             }
             .onAppear {
                 // Start updating location when the view appears
                 locationManager.startLocationUpdates()  // Use the method from LocationManager
-
+                
                 // Check if currentLocation is available
                 if let currentLocation = locationManager.currentLocation {
                     mapCamera = .region(MKCoordinateRegion(
@@ -336,20 +356,20 @@ struct RouteMapView: View {
                     print("Current location not available on appear.")
                 }
             }
-//            .onReceive(locationManager.$currentLocation) { newLocation in
-//                // Update the region whenever currentLocation changes
-//                guard let newLocation = newLocation else { return }
-//                region = MKCoordinateRegion(
-//                    center: newLocation.coordinate,
-//                    span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-//                )
-//                print("Region updated to new current location: \(newLocation.coordinate)")
-//            }
+            //            .onReceive(locationManager.$currentLocation) { newLocation in
+            //                // Update the region whenever currentLocation changes
+            //                guard let newLocation = newLocation else { return }
+            //                region = MKCoordinateRegion(
+            //                    center: newLocation.coordinate,
+            //                    span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+            //                )
+            //                print("Region updated to new current location: \(newLocation.coordinate)")
+            //            }
             .onDisappear {
                 // Stop location updates when the view disappears to save battery
                 locationManager.stopLocationUpdates()  // Use the method from LocationManager
             }
-
+            
         }
     }
     
@@ -365,14 +385,14 @@ struct RouteMapView: View {
         print("Added user's location to chosenLandmarks: \(userLocation.coordinate)")
         calculateRouteDistance()
     }
-
+    
     
     func calculateRouteDistance() {
         
         print(chosenLandmarks)
         print("Current Location: \(String(describing: locationManager.currentLocation))")
         print("Region center: \(String(describing: mapCamera.region?.center))")
-
+        
         
         var requests = [MKDirections.Request]()
         
@@ -455,4 +475,8 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
             self.picker.isPresented.wrappedValue.dismiss()
         }
     }
+}
+
+#Preview{
+    ContentView()
 }
