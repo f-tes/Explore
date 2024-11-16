@@ -1,5 +1,4 @@
-// TODO : 1) check if route calculation is correct 2) debug 2) start map nearer 3) different map angles 4) sheet stuff 5) Generalise to different coordinates and all  6) exploit mapkit lookaround and all 7) combine all 8) beautify all  9) debug 10) get user location in real time 11) new app icon
-
+// TODO : 1) What happens when you press play 2) save story template thing 3) recenter the map 4) notifications 5) more mapkit features (?) 6) direction arrows on path 7) user tracking
 
 import SwiftUI
 import MapKit
@@ -140,7 +139,6 @@ struct RouteMapView: View {
                 
                 
                 // UI components like distance and button
-                // UI components like distance and button
                 VStack {
                     Spacer()
                     VStack {
@@ -191,33 +189,45 @@ struct RouteMapView: View {
                             locations.forEach { location in
                                 if authorizationStatus == .authorized || authorizationStatus == .provisional {
                                     
-                                    let content = UNMutableNotificationContent()
-                                    
-                                    content.title = "Exploro"
-                                    content.subtitle = "You are near a landmark!"
-                                    content.body = "Click the camera button to take a photo at the landmark!"
-                                    
-                                    content.sound = .default
-                                    
-                                    
+
+                        
                                     // Triggers when within 50m from the location
                                     let region = CLCircularRegion(center: location, radius: 50.0, identifier: "Landmark")
                                     
+                                    region.notifyOnEntry = true
+                                    region.notifyOnExit = false
+
+                                    
                                     if region.notifyOnEntry == true{
-                                        allowCamera = true
+
+                                        let content = UNMutableNotificationContent()
+                                        
+                                        content.title = "Exploro"
+                                        content.subtitle = "You are near a landmark!"
+                                        content.body = "Click the camera button to take a photo at the landmark!"
+                                        
+                                        content.sound = .default
+
+                                        if let location = locationManager.currentLocation {
+                                            region.contains(CLLocationCoordinate2D(latitude: location.coordinate.latitude,longitude: location.coordinate.latitude))
+                                        }
+                                        
+                                        
+                                        let trigger = UNLocationNotificationTrigger(region: region, repeats: true)
+                                        let request = UNNotificationRequest(identifier: "FiveSecond", content: content, trigger: trigger) // Schedule the notification.
+                                        let center = UNUserNotificationCenter.current()
+                                        
+                                        
+                                        center.add(UNNotificationRequest(identifier: "Landmark",
+                                                                         content: content,
+                                                                         trigger: trigger))
+                                        
                                     }
                                     if region.notifyOnExit == false{
-                                        allowCamera = false
+//                                        allowCamera = false
                                     }
-                                    if let location = locationManager.currentLocation {
-                                        region.contains(CLLocationCoordinate2D(latitude: location.coordinate.latitude,longitude: location.coordinate.latitude))
-                                    }
-                                    
-                                    let trigger = UNLocationNotificationTrigger(region: region, repeats: true)
-                                    
-                                    center.add(UNNotificationRequest(identifier: "Landmark",
-                                                                     content: content,
-                                                                     trigger: trigger))
+
+
                                 }
                             }
                         }) {
@@ -232,8 +242,7 @@ struct RouteMapView: View {
                         }
                         
                         
-                        // End Button
-                        // End Button
+                        // Recenter Button
                         Button(action: {
                             // Recenter the map to the user's current location
                             if let currentLocation = locationManager.currentLocation {
