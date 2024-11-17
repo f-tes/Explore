@@ -273,6 +273,7 @@ struct RouteMapView: View {
                 HStack{
                     NavigationLink {
                         VStack {
+                            Spacer()
                             TabView{
                                 ForEach(images, id: \.self) { data in
                                     Image(uiImage: UIImage(data: data) ?? UIImage())
@@ -291,7 +292,7 @@ struct RouteMapView: View {
                                         Image(systemName: "camera.shutter.button.fill")
                                         Text("Capture")
                                     }
-                                    .padding(.leading)
+                                    .padding()
                                     .background(Color(hex: "#9FC83E"))
                                     .cornerRadius(10)
                                     .padding()

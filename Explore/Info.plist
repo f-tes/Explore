@@ -2,13 +2,9 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleIdentifier</key>
-	<string></string>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array/>
 	<key>NSUserNotificationsUsageDescription</key>
 	<string>The app needs notification when you are near a landmark</string>
-    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-    <string>We need your location to calculate routes</string>
 </dict>
 </plist>
-
-
