@@ -38,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3C1059DC2CEADF3B00CE59F5 /* gpxgenerator_path.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = gpxgenerator_path.gpx; path = ../../../Desktop/gpxgenerator_path.gpx; sourceTree = "<group>"; };
 		3C88F9742CE857C6004898B5 /* PhotoExport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoExport.swift; sourceTree = "<group>"; };
 		3C8DB3962CE1AC8700BF7485 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9D9F998D2CDF0B22003B209D /* Explore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Explore.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,6 +84,7 @@
 		9D9F99842CDF0B22003B209D = {
 			isa = PBXGroup;
 			children = (
+				3C1059DC2CEADF3B00CE59F5 /* gpxgenerator_path.gpx */,
 				9DCCBBAB2CDF3BFF00884F54 /* ContentView.swift */,
 				9DCCBBA92CDF3B2600884F54 /* Locations.swift */,
 				9D9F998F2CDF0B22003B209D /* Explore */,

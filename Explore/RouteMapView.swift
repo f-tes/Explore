@@ -98,7 +98,7 @@ struct RouteMapView: View {
                     ForEach(chosenLandmarks) { location in
                         if location.name == "Current Location" {
                             // Use a unique icon for the current location
-                            Annotation(location.name, coordinate: location.coordinate, anchor: .bottom) {
+                            Annotation("Start/End", coordinate: location.coordinate, anchor: .bottom) {
                                 Image(systemName: "location.circle.fill")
                                     .padding(6)
                                     .foregroundStyle(.yellow)
