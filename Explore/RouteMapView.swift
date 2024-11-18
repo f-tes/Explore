@@ -285,7 +285,6 @@ struct RouteMapView: View {
                             }.tabViewStyle(.page)
                             
                             VStack{
-                                Spacer()
                                 Button{
                                     self.showCamera.toggle()
                                 } label:{
@@ -293,6 +292,7 @@ struct RouteMapView: View {
                                         Image(systemName: "camera.shutter.button.fill")
                                         Text("Capture")
                                     }
+                                    .frame(maxWidth: .infinity)
                                     .padding()
                                     .background(Color(hex: "#9FC83E"))
                                     .cornerRadius(10)

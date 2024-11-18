@@ -12,14 +12,26 @@ struct RenderView: View {
         
     var body: some View {
         // Photo Grid (no ScrollView)
-        LazyVGrid(columns: columns, spacing: 0) { // Set spacing to 0 to remove gaps
-            ForEach(images, id: \.self) { imageData in
-                if let uiImage = UIImage(data: imageData) {
+        VStack {
+            if images.count == 1 {
+                if let uiImage = UIImage(data: images[0]) {
                     Image(uiImage: uiImage)
                         .resizable()
                         .scaledToFill()  // Keep aspect ratio intact
                         .frame(width: 200, height: 200) // Standardized width and height
                         .clipped() // Ensure the image doesn't overflow its frame
+                }
+            } else {
+                LazyVGrid(columns: columns, spacing: 0) { // Set spacing to 0 to remove gaps
+                    ForEach(images, id: \.self) { imageData in
+                        if let uiImage = UIImage(data: imageData) {
+                            Image(uiImage: uiImage)
+                                .resizable()
+                                .scaledToFill()  // Keep aspect ratio intact
+                                .frame(width: 200, height: 200) // Standardized width and height
+                                .clipped() // Ensure the image doesn't overflow its frame
+                        }
+                    }
                 }
             }
         }
@@ -35,16 +47,17 @@ struct PhotoExport: View {
     @State private var text = ""
     @State private var renderedImage = Image(systemName: "")
     @Environment(\.displayScale) var displayScale
-
+    
     var body: some View {
         VStack {
             Spacer()
+            
             renderedImage
                 .resizable()
                 .scaledToFit()
+                .frame(maxWidth: .infinity, alignment: .center)
             
             Spacer()
-            
             ShareLink("Export", item: renderedImage, preview: SharePreview(Text("Shared image"), image: renderedImage))
             
             // End button (Back button)
@@ -54,11 +67,13 @@ struct PhotoExport: View {
                 images = [] // Clear images
             } label: {
                 Text("End")
+                    .frame(maxWidth: .infinity)
                     .padding()
                     .background(Color(hex: "#9FC83E"))
                     .cornerRadius(10)
                     .foregroundStyle(.black)
                     .fontWeight(.bold)
+                    .padding()
             }
             .fullScreenCover(isPresented: $isBack) {
                 ContentView() // Replace this with your home or previous view
