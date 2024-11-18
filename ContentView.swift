@@ -17,9 +17,8 @@ struct ContentView: View {
     @State var canContinue = false
     
     var body: some View {
-        NavigationStack {
             ZStack {
-                VStack {
+//                VStack {
                     // Map with dynamic annotations
                     Map(initialPosition: .region(region)) {
                         UserAnnotation()
@@ -54,7 +53,7 @@ struct ContentView: View {
                     }
                     .mapStyle(.standard(elevation: .realistic))
                     .edgesIgnoringSafeArea(.all) // Makes the map stretch across the entire screen
-                }
+//                }
 
                 VStack {
                     Spacer() // Pushes the button to the bottom
@@ -80,45 +79,7 @@ struct ContentView: View {
                         .presentationDetents([.medium])
                 }
             }
-//            .overlay(alignment: .topTrailing) {
-//                NavigationLink {
-//                    PhotoUploadView()
-//                } label: {
-//                    Image(systemName: "circle.fill")
-//                        .resizable()
-//                        .scaledToFit()
-//                        .frame(width: 60, height: 60)
-//                        .foregroundStyle(.black)
-//                        .overlay {
-//                            Image(systemName: "camera.fill")
-//                                .resizable()
-//                                .scaledToFit()
-//                                .frame(width: 30)
-//                                .foregroundStyle(Color(hex: "#9FC83E"))
-//                        }
-//                }
-////                    Button {
-////                    // Action for the camera button
-////                    photoUploadSheet = true
-////                } label: {
-////                    Image(systemName: "circle.fill")
-////                        .resizable()
-////                        .scaledToFit()
-////                        .frame(width: 60, height: 60)
-////                        .foregroundStyle(.black)
-////                        .overlay {
-////                            Image(systemName: "camera.fill")
-////                                .resizable()
-////                                .scaledToFit()
-////                                .frame(width: 30)
-////                                .foregroundStyle(Color(hex: "#9FC83E"))
-////                        }
-////                }
-////                .sheet(isPresented: $photoUploadSheet) {
-////                    PhotoUploadView()
-////                }
-//            }
-        }
+        .ignoresSafeArea(.all)
     }
 }
 
@@ -196,7 +157,6 @@ struct SheetView: View {
                     }
                 }
             }
-
             
             
                 Button {

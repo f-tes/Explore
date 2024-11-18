@@ -269,6 +269,7 @@ struct RouteMapView: View {
                     authorizationStatus = settings.authorizationStatus
                 }
             }
+            .toolbar(.hidden, for: .navigationBar)
             .overlay(alignment: .topLeading) {
                 HStack{
                     NavigationLink {

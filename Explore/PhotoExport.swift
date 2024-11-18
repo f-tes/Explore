@@ -20,7 +20,7 @@ struct PhotoExport: View {
                         Image(uiImage: uiImage)
                             .resizable()
                             .scaledToFit()  // Keep aspect ratio intact
-                            .frame(width: calculateImageWidth(), height: calculateImageHeight()) // Standardized width and height
+                            .frame(width: calculateImageWidth(), height: calculateImageWidth()) // Standardized width and height
                             .clipped() // Ensure the image doesn't overflow its frame
                     }
                 }
